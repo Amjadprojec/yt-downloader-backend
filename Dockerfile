@@ -1,4 +1,4 @@
-FROM node:20-slim  # Ganti ke Debian slim, lebih stabil buat yt-dlp
+FROM node:20-bookworm
 
 # Install Python, pip, ffmpeg, & yt-dlp
 RUN apt-get update && \
