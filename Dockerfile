@@ -1,8 +1,10 @@
 FROM node:20-alpine
 
+# Install Python, ffmpeg, & yt-dlp dengan bypass PEP 668
 RUN apk update && \
     apk add --no-cache python3 ffmpeg && \
-    pip3 install --no-cache-dir --break-system-packages yt-dlp && \
+    python3 -m ensurepip && \
+    python3 -m pip install --no-cache-dir --break-system-packages yt-dlp && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /app
