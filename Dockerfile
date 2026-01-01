@@ -1,11 +1,11 @@
-FROM node:20-alpine
+FROM node:20-slim  # Ganti ke Debian slim, lebih stabil buat yt-dlp
 
-# Install Python, ffmpeg, & yt-dlp dengan bypass PEP 668
-RUN apk update && \
-    apk add --no-cache python3 ffmpeg && \
-    python3 -m ensurepip && \
-    python3 -m pip install --no-cache-dir --break-system-packages yt-dlp && \
-    rm -rf /var/cache/apk/*
+# Install Python, pip, ffmpeg, & yt-dlp
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip ffmpeg && \
+    pip3 install yt-dlp && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
